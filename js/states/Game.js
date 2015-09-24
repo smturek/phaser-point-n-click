@@ -16,5 +16,15 @@ PointClk.GameState = {
         this.roomData = JSON.parse(this.game.cache.getText(this.playerData.room));
 
         this.background = this.add.sprite(0, 0, this.roomData.background);
+
+        //create things
+        this.things = this.add.group();
+
+        var thing;
+
+        this.roomData.things.forEach(function(thingData) {
+            thing = new PointClk.Thing(this, thingData);
+            this.things.add(thing);
+        }, this);
     }
 };
