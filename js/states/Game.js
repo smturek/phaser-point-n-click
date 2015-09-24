@@ -9,6 +9,12 @@ PointClk.GameState = {
     create: function() {
         //panel area
         this.panel = this.add.sprite(0, 270, 'panel');
+        var style = {
+            font: '16px Arial',
+            fill: '#fff',
+            wordWrap: true,
+            wordWrapWidth: 400};
+        this.panelLabel = this.add.text(10, 290, "hello", style);
 
         this.loadRoom();
     },
