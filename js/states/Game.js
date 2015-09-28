@@ -41,5 +41,19 @@ PointClk.GameState = {
         this.items.add(item);
 
         return item;
+    },
+    selectItem: function(item) {
+        if(this.selectedItem != item) {
+            this.clearSelection();
+            this.selectedItem = item;
+            this.selectedItem.alpha = 0.5
+        }
+        else {
+            this.clearSelection();
+        }
+    },
+    clearSelection: function() {
+        this.selectedItem = null;
+        this.items.setAll('alpha', 1);
     }
 };
