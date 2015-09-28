@@ -17,6 +17,8 @@ PointClk.GameState = {
         this.panelLabel = this.add.text(10, 290, "hello", style);
 
         this.loadRoom();
+
+        this.items = this.add.group();
     },
     loadRoom: function() {
         this.roomData = JSON.parse(this.game.cache.getText(this.playerData.room));
@@ -32,5 +34,12 @@ PointClk.GameState = {
             thing = new PointClk.Thing(this, thingData);
             this.things.add(thing);
         }, this);
+    },
+    addItem: function(itemData) {
+        //create a new item
+        var item = new PointClk.Item(this, 420 + this.items.length * 80, 310, itemData);
+        this.items.add(item);
+
+        return item;
     }
 };

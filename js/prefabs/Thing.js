@@ -19,4 +19,11 @@ PointClk.Thing.prototype.constructor = PointClk.Thing;
 
 PointClk.Thing.prototype.touch = function () {
     this.state.panelLabel.text = this.data.text;
+
+    //if it is a collectable, then collect it
+    if(this.data.type == 'collectable') {
+        this.state.addItem(this.data);
+        this.kill();
+        return;
+    }
 };
