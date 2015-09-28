@@ -10,7 +10,7 @@ PointClk.GameState = {
         //panel area
         this.panel = this.add.sprite(0, 270, 'panel');
         var style = {
-            font: '16px Arial',
+            font: '16px Prstart',
             fill: '#fff',
             wordWrap: true,
             wordWrapWidth: 400};
