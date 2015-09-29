@@ -28,7 +28,16 @@ PointClk.Thing.prototype.touch = function () {
     }
     //if it's an open door, go to another room
     else if(this.data.type == 'door' && this.data.isOpen) {
-        console.log('go to ' + this.data.destination);
+        var playerData = {
+            room: this.data.destination,
+            items:[]
+        };
+
+        this.state.items.forEachAlive(function(item) {
+            playerData.items.push(item.data);
+        }, this);
+
+        this.game.state.start('Game', true, false, playerData);
         return;
     }
 

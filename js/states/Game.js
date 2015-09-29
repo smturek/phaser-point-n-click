@@ -5,6 +5,7 @@ PointClk.GameState = {
     init: function(playerData) {
         this.playerData = playerData ? playerData : {};
         this.playerData.room = this.playerData.room ? this.playerData.room : 'livingroom';
+        this.playerData.items = this.playerData.items ? this.playerData.items : [];
     },
     create: function() {
         //panel area
@@ -14,11 +15,13 @@ PointClk.GameState = {
             fill: '#fff',
             wordWrap: true,
             wordWrapWidth: 400};
-        this.panelLabel = this.add.text(10, 290, "hello", style);
+        this.panelLabel = this.add.text(10, 290, "", style);
 
         this.loadRoom();
 
         this.items = this.add.group();
+
+        this.showItems();
     },
     loadRoom: function() {
         this.roomData = JSON.parse(this.game.cache.getText(this.playerData.room));
@@ -55,5 +58,10 @@ PointClk.GameState = {
     clearSelection: function() {
         this.selectedItem = null;
         this.items.setAll('alpha', 1);
+    },
+    showItems: function() {
+        this.playerData.items.forEach(function(itemData) {
+            this.addItem(itemData);
+        }, this)
     }
 };
