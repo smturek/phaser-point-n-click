@@ -26,6 +26,11 @@ PointClk.Thing.prototype.touch = function () {
         this.kill();
         return;
     }
+    //if it's an open door, go to another room
+    else if(this.data.type == 'door' && this.data.isOpen) {
+        console.log('go to ' + this.data.destination);
+        return;
+    }
 
     //are we selecting anything?
     var selectedItem = this.state.selectedItem;
@@ -45,6 +50,12 @@ PointClk.Thing.prototype.touch = function () {
             if(interaction.asset) {
                 this.loadTexture(interaction.asset);
                 this.data.asset = interaction.asset;
+            }
+
+            if(interaction.action == 'open-door') {
+                this.data.isOpen = true;
+                selectedItem.kill();
+                this.state.clearSelection();
             }
         }
     }
