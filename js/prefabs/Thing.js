@@ -26,4 +26,26 @@ PointClk.Thing.prototype.touch = function () {
         this.kill();
         return;
     }
+
+    //are we selecting anything?
+    var selectedItem = this.state.selectedItem;
+
+    if(selectedItem) {
+        //are there interactions? are they with the selected item?
+        if(this.data.interactions && this.data.interactions[this.state.selectedItem.data.id]) {
+
+            //we do have an interaction between the thing and the selected item
+            var interaction = this.data.interactions[this.state.selectedItem.data.id];
+
+            //show text
+            if(interaction.text) {
+                this.state.panelLabel.text = interaction.text;
+            }
+
+            if(interaction.asset) {
+                this.loadTexture(interaction.asset);
+                this.data.asset = interaction.asset;
+            }
+        }
+    }
 };

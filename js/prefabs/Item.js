@@ -6,6 +6,7 @@ PointClk.Item = function(state, x, y, data) {
     this.game = state.game;
     this.state = state;
     this.anchor.setTo(0.5);
+    this.data = data;
 
     //listen for input
     this.inputEnabled = true;
